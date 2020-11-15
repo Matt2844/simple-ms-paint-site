@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="main.css">
+  <title>MF Paint</title>
+</head>
+
+<body>
+  <ul class="nav">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="saved.html">MS Paint Art</a></li>
+    <li><a href="ms-history.html">History of MS Paint</a></li>
+  </ul>
+
+  <script type="text/javascript">
+    var canvas, ctx, flag = false,
+      prevX = 0,
+      currX = 0,
+      prevY = 0,
+      currY = 0,
+      dot_flag = false;
+
+    var x = "black",
+      y = 2;
+
+    function init() {
+      canvas = document.getElementById('can');
+      ctx = canvas.getContext("2d");
+      w = canvas.width;
+      h = canvas.height;
+
+      canvas.addEventListener("mousemove", function(e) {
+        findxy('move', e)
+      }, false);
+      canvas.addEventListener("mousedown", function(e) {
+        findxy('down', e)
+      }, false);
+      canvas.addEventListener("mouseup", function(e) {
+        findxy('up', e)
+      }, false);
+      canvas.addEventListener("mouseout", function(e) {
+        findxy('out', e)
+      }, false);
+    }
+
+    function color(obj) {
+      switch (obj.id) {
+        case "blue":
+          x = "blue";
+          break;
+        case "red":
+          x = "red";
+          break;
+        case "yellow":
+          x = "yellow";
+          break;
+          break;
+        case "black":
+          x = "black";
+          break;
+        case "white":
+          x = "white";
+          break;
+      }
+      if (x == "white") y = 25;
+      else y = 2;
+
+    }
+
+    function draw() {
+      ctx.beginPath();
+      ctx.moveTo(prevX, prevY);
+      ctx.lineTo(currX, currY);
+      ctx.strokeStyle = x;
+      ctx.lineWidth = y;
+      ctx.stroke();
+      ctx.closePath();
+    }
+
+    function erase() {
+      var m = confirm("Click ok to confirm clear.");
+      if (m) {
+        ctx.clearRect(0, 0, w, h);
+        document.getElementById("canvasimg").style.display = "none";
+      }
+    }
+
+
+    function findxy(res, e) {
+      if (res == 'down') {
+        prevX = currX;
+        prevY = currY;
+        currX = e.clientX - canvas.offsetLeft;
+        currY = e.clientY - canvas.offsetTop;
+
+        flag = true;
+        dot_flag = true;
+        if (dot_flag) {
+          ctx.beginPath();
+          ctx.fillStyle = x;
+          ctx.fillRect(currX, currY, 2, 2);
+          ctx.closePath();
+          dot_flag = false;
+        }
+      }
+      if (res == 'up' || res == "out") {
+        flag = false;
+      }
+      if (res == 'move') {
+        if (flag) {
+          prevX = currX;
+          prevY = currY;
+          currX = e.clientX - canvas.offsetLeft;
+          currY = e.clientY - canvas.offsetTop;
+          draw();
+        }
+      }
+    }
+  </script>
+
+  <body onload="init()">
+    <canvas id="can" width="800" height="400"
+      style="position:absolute;top:15%;left:8%;border:3px solid grey;background-color: rgb(242, 242, 242);"></canvas>
+    <div style="position:absolute;top:29%;left:3%;width:23px;height:23px;border:1px solid black;background:blue;"
+      id="blue" onclick="color(this)"></div>
+    <div style="position:absolute;top:23%;left:3%;width:23px;height:23px;border:1px solid black;background:red;"
+      id="red" onclick="color(this)"></div>
+    <div style="position:absolute;top:17%;left:3%;width:23px;height:23px;border:1px solid black;background:yellow;"
+      id="yellow" onclick="color(this)"></div>
+    <div
+      style="position:absolute;top:35%;left:3%;width:23px;height:23px;border:1px solid black;background:rgb(0, 0, 0);"
+      id="black" onclick="color(this)"></div>
+    <input type="button" value="eraser" id="white" size="23" onclick="color(this)"
+      style="position:absolute;top:45%;left:2%;">
+    <input type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:52%;left:2%;">
+
+
+
+
+  </body>
+
+</html>

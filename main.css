@@ -1,0 +1,145 @@
+* {box-sizing: border-box;}
+
+body {
+  background-color: rgb(57, 57, 57);
+}
+
+ul.nav {
+  margin:0;
+  padding:0;
+  list-style:none;
+  height:36px; line-height:36px;
+  background:#c4c0c0; 
+  font-family:Arial, Helvetica, sans-serif;
+  font-size:13px;
+}
+ul.nav li {
+  border-right:1px solid #000000; 
+  float:left;
+}
+ul.nav a {
+  display:block;
+  padding:0 28px;
+  color:#000000;
+  text-decoration:none;
+  
+}
+ul.nav a:hover,
+ul.nav li.current a {
+  background:#a2a2a2;
+  text-decoration: underline;
+}
+
+/* The slideshow from the ms paint art page */
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: 4%;
+  width: 68%;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 28px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #000000;
+  font-size: 18px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.dots-container {
+  margin-right: 30%;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+/* MS paint history page */
+
+.ms-history-body {
+  background-color: rgb(237, 237, 237);
+}
+
+.paint-history-container {
+  margin: 50px 150px 50px 75px;
+  font-family: 'helvetica';
+  font-size: 19px;
+}
